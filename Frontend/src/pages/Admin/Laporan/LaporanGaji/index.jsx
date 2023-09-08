@@ -11,7 +11,7 @@ import { BiSearch } from 'react-icons/bi';
 
 const LaporanGaji = () => {
     const [searchMonth, setSearchMonth] = useState("");
-    const [searchYear, setSearchYear] = useState("");
+    const [searchYear, setSearchYear] = useState(new Date().getFullYear().toString());
     const [showMessage, setShowMessage] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -23,7 +23,9 @@ const LaporanGaji = () => {
     };
 
     const handleSearchYear = (event) => {
-        setSearchYear(event.target.value);
+        const thisYear = parseInt(new Date().getFullYear().toString());
+        if (parseInt(event.target.value) >= 1970 && (parseInt(event.target.value) <= thisYear))
+            setSearchYear(event.target.value);
     };
 
     const handleSearch = async (event) => {
@@ -132,9 +134,9 @@ const LaporanGaji = () => {
                                                 required
                                                 className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                                             />
-                                            <span className='absolute top-1/2 right-4 z-30 -translate-y-1/2 text-2xl'>
+                                            {/* <span className='absolute top-1/2 right-4 z-30 -translate-y-1/2 text-2xl'>
                                                 <BiSearch />
-                                            </span>
+                                            </span> */}
                                         </div>
                                     </div>
                                 </div>
